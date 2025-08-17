@@ -22,20 +22,3 @@ class GithubState(rx.State):
         async with self:
             self.url = github_data["url"]
             self.profile_image = github_data["avatar_url"]
-
-
-def github():
-    return rx.container(
-        rx.hstack(
-            rx.link(
-                rx.avatar(src=GithubState.profile_image),
-                href=GithubState.url,
-            ),
-            rx.input(
-                placeholder="Your Github username",
-                on_blur=GithubState.set_profile,
-                auto_focus=True,
-            ),
-            rx.link("Página inicial", href="/", title="Via react-router"),
-        )
-    )
