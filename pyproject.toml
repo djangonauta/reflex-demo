@@ -1,0 +1,22 @@
+[project]
+name = "reflexo"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Igor Carvalho",email = "igbrch@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.13,<3.14"
+dependencies = [
+    "reflex (>=0.8.6,<0.9.0)",
+    "psycopg[async] (>=3.2.9,<4.0.0)",
+    "python-decouple (>=3.8,<4.0)",
+    "httpx (>=0.28.1,<0.29.0)",
+]
+
+[tool.poetry]
+packages = [{include = "reflexo", from = "src"}]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
