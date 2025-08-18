@@ -1,2 +1,2 @@
 # Crie um arquivo .env na raiz do projeto contendo as seguintes variáveis de ambiente (sem aspas)
-DATABASE_URL=postgresql+psycopg://postgres:admin@localhost:5432/reflexo # exemplo
+DATABASE_URL=postgresql+psycopg://postgres:admin@localhost:5432/reflexo
