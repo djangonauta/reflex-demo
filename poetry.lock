@@ -824,14 +824,14 @@ ocsp = ["cryptography (>=36.0.1)", "pyopenssl (>=20.0.1)", "requests (>=2.31.0)"
 
 [[package]]
 name = "reflex"
-version = "0.8.6"
+version = "0.8.7"
 description = "Web apps in pure Python."
 optional = false
 python-versions = "<4.0,>=3.10"
 groups = ["main"]
 files = [
-    {file = "reflex-0.8.6-py3-none-any.whl", hash = "sha256:9b4b1beb8621c0afb5a5e480310956fa717d8e44f77adfc367d4fd7fd4c3f3c2"},
-    {file = "reflex-0.8.6.tar.gz", hash = "sha256:74e1495c890ed1e222b33418d1e1b6b68802537f5d93b70daa3b2b8cfa9f57f5"},
+    {file = "reflex-0.8.7-py3-none-any.whl", hash = "sha256:ac0e3b56ec11a5d97d2cdec1c8aa2aaee501597a02a12381d62a2918ce6783a1"},
+    {file = "reflex-0.8.7.tar.gz", hash = "sha256:42af70890ea817e520e3c7a5dd0d94a56d43e393ff777dbec4253bc0b6bcac1c"},
 ]
 
 [package.dependencies]
@@ -847,7 +847,7 @@ pydantic = ">=1.10.21,<3.0"
 python-multipart = ">=0.0.20,<1.0"
 python-socketio = ">=5.12.0,<6.0"
 redis = ">=5.2.1,<7.0"
-reflex-hosting-cli = ">=0.1.53"
+reflex-hosting-cli = ">=0.1.54"
 rich = ">=13,<15"
 sqlmodel = ">=0.0.24,<0.1"
 starlette = ">=0.47.0"

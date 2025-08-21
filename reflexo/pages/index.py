@@ -1,6 +1,7 @@
 import reflex as rx
 
 from ..models import Produto
+from ..template import template
 from .index_state import IndexState
 
 
@@ -21,7 +22,7 @@ def form_produto():
                 required=True,
                 auto_focus=True,
                 value=IndexState.nome,
-                on_change=IndexState.set_nome,
+                on_change=IndexState.setvar("nome"),
             ),
             rx.input(
                 name="preco",
@@ -29,7 +30,7 @@ def form_produto():
                 type="number",
                 step="0.01",
                 required=True,
-                value=IndexState.preco,
+                value=IndexState.preco.to(str),
                 on_change=IndexState.set_preco,
             ),
             rx.hstack(
@@ -121,16 +122,13 @@ def tabela_produtos():
     )
 
 
-@rx.page("/", "Aplicação teste reflex", on_load=IndexState.carregar_produtos)
+@rx.page("/", "Aplicação teste reflex", on_load=IndexState.carregar_produtos)  # type: ignore
+@template
 def index():
-    return rx.container(
-        rx.color_mode.button(position="top-left"),
-        rx.vstack(
-            rx.heading("Produtos", size="8"),
-            form_produto(),
-            rx.spinner(tabela_produtos(), size="3", loading=IndexState.carregando),
-            rx.link("Outra página", href="/github", title="Via react-router"),
-            justify="center",
-            min_height="85vh",
-        ),
+    return rx.vstack(
+        rx.color_mode.button(position="top-right"),
+        rx.heading("Produtos", size="8"),
+        form_produto(),
+        rx.spinner(tabela_produtos(), size="3", loading=IndexState.carregando),
+        justify="center",
     )

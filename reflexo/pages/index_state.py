@@ -7,11 +7,11 @@ from ..models import Produto
 
 
 class IndexState(rx.State):
-    carregando: bool = False
-    id: int = 0
-    nome: str = ""
-    preco: float = 0.0
-    produtos: List[Produto] = []
+    carregando: rx.Field[bool] = rx.field(False)
+    id: rx.Field[int] = rx.field(0)
+    nome: rx.Field[str] = rx.field("")
+    preco: rx.Field[float] = rx.field(0.0)
+    produtos: rx.Field[List[Produto]] = rx.field(default_factory=list)
 
     def init_produto(self):
         self.id = 0
@@ -37,7 +37,7 @@ class IndexState(rx.State):
                 try:
                     self.carregando = True
                     yield
-                    await asyncio.sleep(1)
+                    await asyncio.sleep(0.5)
 
                     if self.id != 0:
                         stmt = Produto.select().where(Produto.id == self.id)
@@ -81,7 +81,7 @@ class IndexState(rx.State):
                     self.carregando = True
                     yield
 
-                    await asyncio.sleep(1)
+                    await asyncio.sleep(0.5)
                     stmt = Produto.select().where(Produto.id == produto["id"])
                     produto = (await s.exec(stmt)).one()
                     await s.delete(produto)
@@ -105,7 +105,7 @@ class IndexState(rx.State):
                 self.init_produto()
                 yield
 
-                await asyncio.sleep(1)
+                await asyncio.sleep(0.5)
                 try:
                     stmt = Produto.select().order_by(Produto.id)  # type: ignore
                     resultado = await s.exec(stmt)
@@ -127,3 +127,4 @@ class IndexState(rx.State):
     async def limpar_produto(self):
         async with self:
             self.init_produto()
+            yield rx.set_focus("nome_produto")
